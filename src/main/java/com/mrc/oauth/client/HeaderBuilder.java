@@ -1,4 +1,4 @@
-package com.mrc.oauth;
+package com.mrc.oauth.client;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -16,12 +16,12 @@ public class HeaderBuilder {
         headers = new HashMap<String, String>();
     }
 
-    public HeaderBuilder headerOAuth(String endPoint, String hubId, String project) {
+    public HeaderBuilder headerOAuth(String endPoint, String clientId, String secret, String project) {
         final String xTimestamp = getXTimestamp();
 
         headers.put("endPoint", endPoint);
-        headers.put("client", hubId);
-        headers.put("secret", hubId);
+        headers.put("clientId", clientId);
+        headers.put("secret", secret);
         headers.put("project", project);
         headers.put("xTimestamp", xTimestamp);
 
