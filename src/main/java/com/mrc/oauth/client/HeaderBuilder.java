@@ -16,12 +16,11 @@ public class HeaderBuilder {
         headers = new HashMap<String, String>();
     }
 
-    public HeaderBuilder headerOAuth(String endPoint, String clientId, String secret, String project) {
+    public HeaderBuilder headerOAuth(String endPoint, String clientId, String project) {
         final String xTimestamp = getXTimestamp();
 
         headers.put("endPoint", endPoint);
         headers.put("clientId", clientId);
-        headers.put("secret", secret);
         headers.put("project", project);
         headers.put("xTimestamp", xTimestamp);
 

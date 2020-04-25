@@ -19,7 +19,7 @@ import java.util.Date;
 public class AuthorizationController {
 
     @GetMapping("/getToken")
-    public String getLeaderLookupMock(@RequestHeader("hubId") String hubId,
+    public String getLeaderLookupMock(@RequestHeader("clientId") String clientId,
                                       @RequestHeader("project") String project,
                                       @RequestHeader("endPoint") String endPoint,
                                       @RequestHeader("xTimestamp") String xTimestamp)
@@ -31,7 +31,7 @@ public class AuthorizationController {
         Date expiryDate = Date.from(Instant.now().plusSeconds(30));
 
         return Jwts.builder()
-                .setIssuer(hubId)
+                .setIssuer(clientId)
                 .setSubject(project)
                 .claim("endPoint", endPoint)
                 .claim("xTimestamp", xTimestamp)

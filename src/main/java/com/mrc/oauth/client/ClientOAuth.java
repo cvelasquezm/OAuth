@@ -1,8 +1,14 @@
 package com.mrc.oauth.client;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.net.http.HttpResponse;
 import java.util.Map;
 
+@RestController
+@RequestMapping("/api")
 public class ClientOAuth {
 
     private HeaderBuilder headerBuilder;
@@ -13,7 +19,7 @@ public class ClientOAuth {
     private final String SERVER_AUTH_SERVICE = "http://localhost:8090/";
     private RestClient restClient;
 
-    public void retrieveInformation() {
+    public void ClientOAuth() {
         restClient = new RestClient();
     }
 
@@ -25,12 +31,12 @@ public class ClientOAuth {
         return String.valueOf(response.body());
     }
 
-    private String getToken() throws Exception {
+    @GetMapping("/token")
+    public String getToken() throws Exception {
         final String client = "client";
-        final String secret = "secret";
         final String project = "project";
         final String uri = SERVER_AUTH_SERVICE + ENDPOINT_AUTH_SERVICE;
-        final Map<String, String> headers = headerBuilder.headerOAuth(ENDPOINT_AUTH_SERVICE, client, secret, project).build();
+        final Map<String, String> headers = headerBuilder.headerOAuth(ENDPOINT_AUTH_SERVICE, client, project).build();
         final HttpResponse response = restClient.doRequest(uri, headers, "GET");
 
         return String.valueOf(response.body());
