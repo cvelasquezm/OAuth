@@ -1,5 +1,6 @@
 package com.mrc.oauth.authorization;
 
+import com.mrc.oauth.util.PropertiesManager;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.TextCodec;
@@ -18,17 +19,17 @@ import java.util.Date;
 @RequestMapping("/auth_server/v1")
 public class AuthorizationController {
 
+    private final String SECRET = "secret";
+
     @GetMapping("/getToken")
-    public String getLeaderLookupMock(@RequestHeader("clientId") String clientId,
-                                      @RequestHeader("project") String project,
-                                      @RequestHeader("endPoint") String endPoint,
-                                      @RequestHeader("xTimestamp") String xTimestamp)
+    public String getAccessToken(@RequestHeader("clientId") String clientId,
+                                 @RequestHeader("project") String project,
+                                 @RequestHeader("endPoint") String endPoint,
+                                 @RequestHeader("xTimestamp") String xTimestamp)
     {
-        //Secret Should be storage in ENVIRONMENT VARIABLES?
-        //Secret Should be retrieve from a header?
-        String secret = "Yn2kjibddFAWtnPJ2AFlL8WXmohJMCvigQggaEypa5E=";
-        Date issuedAt = Date.from(Instant.now());
-        Date expiryDate = Date.from(Instant.now().plusSeconds(30));
+        final String secret = PropertiesManager.INSTANCE.getProperty(SECRET);
+        final Date issuedAt = Date.from(Instant.now());
+        final Date expiryDate = Date.from(Instant.now().plusSeconds(30));
 
         return Jwts.builder()
                 .setIssuer(clientId)

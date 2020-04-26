@@ -1,10 +1,10 @@
-# class files
 *.class
-
 /target/
-
-.gradle
 build/
+logs/
+*.log
+.gradle
+
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**
@@ -20,7 +20,7 @@ build/
 
 ### IntelliJ IDEA ###
 .idea
-/.idea/
+.idea/
 *.iws
 *.iml
 *.ipr
