@@ -31,10 +31,15 @@ public class ClientOAuth {
     public String getToken() throws Exception {
         final String client = "client";
         final String project = "project";
-        final String uri = SERVER_AUTH_SERVICE.concat(ENDPOINT_AUTH_SERVICE);
-        final Map<String, String> headers = headerBuilder.headerOAuth(ENDPOINT_AUTH_SERVICE, client, project).build();
-        final HttpResponse response = restClient.doRequest(uri, headers, GET_METHOD);
+        final String uri_auth = SERVER_AUTH_SERVICE.concat(ENDPOINT_AUTH_SERVICE);
+        final String uri_resource = SERVER_RESOURCE_SERVICE.concat(ENDPOINT_RESOURCE_SERVICE);
 
-        return String.valueOf(response.body());
+        final Map<String, String> headers = headerBuilder.headerOAuth(ENDPOINT_AUTH_SERVICE, client, project).build();
+        final HttpResponse response_auth = restClient.doRequest(uri_auth, headers, GET_METHOD);
+
+        final Map<String, String> headers_resource = headerBuilder.headerToken(String.valueOf(response_auth.body())).build();
+        final HttpResponse response_resource = restClient.doRequest(uri_resource, headers_resource, GET_METHOD);
+
+        return String.valueOf(response_resource);
     }
 }

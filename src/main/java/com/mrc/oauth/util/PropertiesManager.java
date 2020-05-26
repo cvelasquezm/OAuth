@@ -9,16 +9,18 @@ public class PropertiesManager {
     private Properties properties = new Properties();
 
     private PropertiesManager() {
-        if (INSTANCE == null){
-            try {
-                properties.load(ClassLoader.getSystemResourceAsStream(NAME_PROPERTIES));
-            } catch (IOException e) {
-                System.out.println("error loading file properties");
+        synchronized (this){
+            if (INSTANCE == null){
+                try {
+                    properties.load(ClassLoader.getSystemResourceAsStream(NAME_PROPERTIES));
+                } catch (IOException e) {
+                    System.out.println("error loading file properties");
+                }
             }
         }
     }
 
-    public String getProperty(String key) {
+    public synchronized String getProperty(String key) {
         return properties.getProperty(key);
     }
 }

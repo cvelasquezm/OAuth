@@ -12,12 +12,4 @@ public class ResourceResponse {
     public static String getSuccessResponse(){
         return "{\"status\" : \"200\", \"message\" : \"Authorized access\"}";
     }
-
-    public static String getFailureResponse(){
-        return "{\"status\" : \"500\", \"message\" : \"An error has occurred\"}";
-    }
-
-    public static String getForbiddenResponse(){
-        return "{\"status\" : \"403\", \"message\" : \"Prohibited access\"}";
-    }
 }

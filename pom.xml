@@ -15,11 +15,6 @@
     <artifactId>oauth</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <!--<properties>
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.compiler.source>11</maven.compiler.source>
-    </properties>-->
-
     <dependencies>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
@@ -56,11 +51,6 @@
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>2.4.0-b180830.0359</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-            <version>2.1.1</version>
         </dependency>
     </dependencies>
 	

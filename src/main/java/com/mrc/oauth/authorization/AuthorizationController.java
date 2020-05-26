@@ -19,7 +19,7 @@ import java.util.Date;
 @RequestMapping("/auth_server/v1")
 public class AuthorizationController {
 
-    private final String SECRET = "secret";
+    private final String SECRET_PROPERTY_KEYWORD = "secret";
 
     @GetMapping("/getToken")
     public String getAccessToken(@RequestHeader("clientId") String clientId,
@@ -27,7 +27,7 @@ public class AuthorizationController {
                                  @RequestHeader("endPoint") String endPoint,
                                  @RequestHeader("xTimestamp") String xTimestamp)
     {
-        final String secret = PropertiesManager.INSTANCE.getProperty(SECRET);
+        final String secret = PropertiesManager.INSTANCE.getProperty(SECRET_PROPERTY_KEYWORD);
         final Date issuedAt = Date.from(Instant.now());
         final Date expiryDate = Date.from(Instant.now().plusSeconds(30));
 
